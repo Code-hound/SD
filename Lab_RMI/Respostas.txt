@@ -1,0 +1,13 @@
+4. i)
+
+ii)
+Classes do Cliente: 
+TTTClient.java que implementa a lógica de jogo, com chamadas aos métodos do objecto remoto registado no directório de nomes, acedidos via proxy (TTTService)
+
+Classes do Servidor:
+TTT.java que implementa a classes concreta do objecto remoto jogo
+
+TTTServer.java que corre o programa servidor, registando o objecto remoto no directório de nomes do java, para que este fique disponível para ligações remotas
+
+Classes de ambos:
+TTTService.java que é a interface de jogo utilizada tanto pelo servidor para a declaração do jogo como objecto remoto como pelo cliente para gerar o proxy capaz de responder aos métodos do jogo.
