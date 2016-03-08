@@ -1,0 +1,24 @@
+Para a realização deste exercício foi necessária a criação de uma interface TTTService que estende a Class Remote
+e fornecendo assim a assinatura de todos os métodos implementados pelo objecto TTT que representa
+o jogo, de modo a que o mesmo possa ser manipulado remotamente por um cliente, ainda que a Classe TTT
+e o objecto concreto se encontrem apenas no lado do servidor.
+
+Para isto, o TTTServer quando é lançado, instancia um ojecto ttt concreto e regista-o no directório de
+nomes do java, no nosso caso, no porto 1098 do localhost.
+
+Depois disso o progama TTTClient (que implementa a lógica de jogo anteriormente encontrada
+na classe Game presente no lado do servidor) tenta ler do directório de nomes um objecto remoto
+que responda à assinatura presente na interface TTTService, gerando assim um proxy
+que lhe permite interagir com o objecto, mesmo sem conhecer a sua implementação.
+
+Para a solução do exercício de avaliação foi adicionado um método à interface remota, o método
+int lastPlay(int player), implementado na classe concreta TTT como uma função que, recebendo o num
+do jogador devolve a última jogada efectuada do mesmo (para cada um dos 2 jogadores) ou retornando
+-1 no caso de nenhuma jogada ter sido efectuada pelo jogador respectivo.
+
+Este método remoto é invocado quando o jogador escreve 10 como jogada, tendo sido, para a sua
+validação alterado o intervalo de jogadas possiveis na lógica de jogo.
+
+
+A nossa solução implementa também um método restart() que permite reiniciar um tabuleiro de jogo
+para facilitar testes futuros.
