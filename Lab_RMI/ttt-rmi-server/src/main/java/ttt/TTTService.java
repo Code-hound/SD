@@ -10,4 +10,6 @@ public interface TTTService extends Remote {
 	int checkWinner() throws RemoteException;
 	
 	void restart() throws RemoteException;
+	
+	int lastPlay(int player) throws RemoteException;
 }

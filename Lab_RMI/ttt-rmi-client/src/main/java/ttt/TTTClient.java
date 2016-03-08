@@ -36,9 +36,19 @@ public class TTTClient {
 										+ "where you want to place your %c (or 0 to refresh the board): \n",
 										player, (player == 1) ? 'X' : 'O');
 						play = keyboardSc.nextInt();
-					} while (play > 9 || play < 0);
+					} while (play > 10 || play < 0);
 					//
 					if (play != 0) {
+						if(play==10){
+							int last=game.lastPlay(player);
+							if(last!=-1){
+								System.out.println("Last play was: " + last +" by player " + player);
+							}else{
+								System.out.println("No plays made by player " + player);
+							}
+							playAccepted = false;
+							continue;
+						}
 						playAccepted = game.play( --play / 3, play % 3, player);
 						if (!playAccepted)
 							System.out.println("Invalid play! Try again.");

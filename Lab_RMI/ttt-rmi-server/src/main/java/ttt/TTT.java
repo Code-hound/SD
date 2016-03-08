@@ -3,14 +3,15 @@ package ttt;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 
-
 public class TTT extends UnicastRemoteObject implements TTTService{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	protected TTT() throws RemoteException {}
-
+	private int _lastMove_player1=-1;
+	private int _lastMove_player2=-1;
+	
 	char board[][] = {
 		  {'1','2','3'},          /* Initial values are reference numbers */
 		  {'4','5','6'},          /* used to select a vacant square for   */
@@ -36,6 +37,9 @@ public class TTT extends UnicastRemoteObject implements TTTService{
     }
 
     public boolean play(int row, int column, int player) {
+    	int _move = row * 3 + column +1;
+    	
+    	
 		if (!(row >=0 && row <3 && column >= 0 && column < 3))
 			return false;
 		if (board[row][column] > '9')
@@ -47,6 +51,13 @@ public class TTT extends UnicastRemoteObject implements TTTService{
 			return false;
 
 		board[row][column] = (player == 1) ? 'X' : 'O';        /* Insert player symbol   */
+		
+		if(player==1){
+			_lastMove_player1=_move;
+		}else{
+			_lastMove_player2=_move;
+		}
+		
 		nextPlayer = (nextPlayer + 1) % 2;
 		numPlays ++;
 		return true;	
@@ -94,6 +105,16 @@ public class TTT extends UnicastRemoteObject implements TTTService{
     	 board= copyBoard;
     		nextPlayer = 0;
     		numPlays = 0;
+    		_lastMove_player1=0;
+    		_lastMove_player2=0;
+    }
+    
+    public int lastPlay(int player){
+    	if(player==1){
+    		return _lastMove_player1;
+    	}else{
+    		return _lastMove_player2;
+    	}
     }
 
 }
