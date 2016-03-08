@@ -1,4 +1,5 @@
-4. i)
+4. i)Contrariamente ao código .xdr gerado pelo sun rpc, a conversão de dados no RMI é gerida pelos stubs, seja o skeleton no lado do sevidor ou pelo proxy no lado do cliente, que são gerados pelo compilador de interfaces.
+a conversão de parâmetros é feita através de marshaling / unmarshaling dos objectos remotos e parâmetros utilizados.
 
 ii)
 Classes do Cliente: 
