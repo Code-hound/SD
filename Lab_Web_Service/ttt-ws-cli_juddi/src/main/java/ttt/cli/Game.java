@@ -87,7 +87,7 @@ public class Game {
 				play = readPlay();
 				if (play != 0) {
 					playAccepted = ttt.play(--play / 3, play % 3, player);
-					System.out.println("Played:\nRow= "+(--play / 3)+"\nCollumn= "+(play % 3)+"\nBy Player:"+player+"\nResult - Accepted="+playAccepted);
+					//System.out.println("Played:\nRow= "+(--play / 3)+"\nCollumn= "+(play % 3)+"\nBy Player:"+player+"\nResult - Accepted="+playAccepted);
 					if (!playAccepted)
 						System.out.println("Invalid play! Try again.");
 				} else {

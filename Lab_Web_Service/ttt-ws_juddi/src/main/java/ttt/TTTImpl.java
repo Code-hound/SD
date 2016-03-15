@@ -21,7 +21,7 @@ public class TTTImpl implements TTT {
 	}
 
 	public boolean play(int row, int column, int player) {
-		System.out.println("PLAYED:\nROW: "+row+"\nCOLUMN: "+column+"\nBy PLAYER: "+player);
+		//System.out.println("PLAYED:\nROW: "+row+"\nCOLUMN: "+column+"\nBy PLAYER: "+player);
 		if (!(row >= 0 && row < 3 && column >= 0 && column < 3))
 			return false;
 		if (board[row][column] > '9')
