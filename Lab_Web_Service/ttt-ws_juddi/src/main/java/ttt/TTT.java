@@ -9,4 +9,6 @@ public interface TTT {
 	boolean play(int row, int column, int player);
 
 	int checkWinner();
+
+	void restart();
 }

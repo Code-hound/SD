@@ -1,17 +1,13 @@
 package ttt;
 
-import javax.jws.WebService;
-
-@WebService(endpointInterface = "ttt.TTT")
-public class TTTImpl implements TTT {
-
-	private char board[][] = {
+public class TTT {
+	char board[][] = {
 			{ '1', '2', '3' }, /* Initial values are reference numbers */
 			{ '4', '5', '6' }, /* used to select a vacant square for */
 			{ '7', '8', '9' } /* a turn. */
 	};
-	private int nextPlayer = 0;
-	private int numPlays = 0;
+	int nextPlayer = 0;
+	int numPlays = 0;
 
 	public String currentBoard() {
 		String s = "\n\n " + board[0][0] + " | " + board[0][1] + " | " + board[0][2] + " " + "\n---+---+---\n "
@@ -21,7 +17,6 @@ public class TTTImpl implements TTT {
 	}
 
 	public boolean play(int row, int column, int player) {
-		System.out.println("PLAYED:\nROW: "+row+"\nCOLUMN: "+column+"\nBy PLAYER: "+player);
 		if (!(row >= 0 && row < 3 && column >= 0 && column < 3))
 			return false;
 		if (board[row][column] > '9')
@@ -41,7 +36,6 @@ public class TTTImpl implements TTT {
 
 	public int checkWinner() {
 		int i;
-
 		/* Check for a winning line - diagonals first */
 		if ((board[0][0] == board[1][1] && board[0][0] == board[2][2])
 				|| (board[0][2] == board[1][1] && board[0][2] == board[2][0])) {
@@ -49,7 +43,7 @@ public class TTTImpl implements TTT {
 				return 1;
 			else
 				return 0;
-		} else {
+		} else
 			/* Check rows and columns for a winning line */
 			for (i = 0; i <= 2; i++) {
 				if ((board[i][0] == board[i][1] && board[i][0] == board[i][2])) {
@@ -66,23 +60,10 @@ public class TTTImpl implements TTT {
 						return 0;
 				}
 			}
-		}
-
 		if (numPlays == 9)
 			return 2; /* A draw! */
 		else
 			return -1; /* Game is not over yet */
 	}
 
-
-	public void restart(){
-		char copyboard[][] = {
-			{ '1', '2', '3' }, /* Initial values are reference numbers */
-			{ '4', '5', '6' }, /* used to select a vacant square for */
-			{ '7', '8', '9' } /* a turn. */
-		};
-		board=copyboard.clone();
-	nextPlayer = 0;
-	numPlays = 0;
-	}
 }

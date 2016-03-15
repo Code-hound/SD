@@ -71,6 +71,7 @@ public class Game {
 							+ "where you want to place your %c (or 0 to refresh the board): %n",
 					player, (player == 1) ? 'X' : 'O');
 			play = keyboardSc.nextInt();
+
 		} while (play > 9 || play < 0);
 		return play;
 	}
@@ -86,9 +87,11 @@ public class Game {
 				play = readPlay();
 				if (play != 0) {
 					playAccepted = ttt.play(--play / 3, play % 3, player);
+					System.out.println("Played:\nRow= "+(--play / 3)+"\nCollumn= "+(play % 3)+"\nBy Player:"+player+"\nResult - Accepted="+playAccepted);
 					if (!playAccepted)
 						System.out.println("Invalid play! Try again.");
 				} else {
+					ttt.restart();
 					playAccepted = false;
 				}
 			} while (!playAccepted);
